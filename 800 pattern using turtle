@@ -1,0 +1,50 @@
+import turtle
+from math import cos,sin
+from time import sleep
+import colorsys
+import random
+
+window = turtle.Screen()
+window.bgcolor("gray15")
+window.tracer(0,0)
+
+myPen = turtle.Turtle()
+myPen.hideturtle()
+myPen.speed(0)
+myPen.pensize(3)
+
+def sp(R,r,d,angle):
+    h = 0.8
+    myPen.penup()
+    myPen.setpos(R-r+d,0)
+    myPen.pendown()
+    hue = R/10
+    hue1 = R/10
+    c = colorsys.hsv_to_rgb(hue,1,1)
+    c1 = colorsys.hsv_to_rgb(hue1,1,1)
+    myPen.color(c)
+    myPen.fillcolor(c1)
+    myPen.begin_fill()
+    for t in range(290):
+        angle+=0.1
+        x = (R-r)*cos(angle/2)+d*cos(((R-d))*angle/2)
+        y = (R-r)*sin(angle/2)-d*(sin(((R-d))*angle/2))
+        myPen.goto(x,y)
+#myPen.end_fill(
+
+        R = 290
+        r = 100
+        d = 80
+        for i in range(1,860):
+            R+=1
+            r+=1.5
+            d +=0
+            myPen.clear()
+            sp(R,r,d,angle=0)
+            myPen.getscreen().update()
+
+        turtle.done()
+
+#x = (R-r)*cos(angle)+d*cos(((R-r)/r)*angle)+cos(R*angle)+(cos(r*angle))**3
+
+
